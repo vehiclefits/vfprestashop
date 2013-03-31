@@ -1,0 +1,69 @@
+<?php
+$search = new VF_Search;
+?>
+
+<form action="?" method="<?=$search->getMethod()?>" id="<?=$search->formId()?>" name="<?=$search->formId()?>">
+    <input type="hidden" id="vafProduct" value="<?=$search->getProductId()?>" />
+    <?=$search->proxyValues();?>
+    <!-- start "category chooser" --> 
+    <?php
+    echo '<input type="hidden" name="category" id="categorySelect" value="?" />'; 
+    ?>
+    <!-- end "category chooser" --> 
+
+    <?php
+    $levels = $search->getLevels();
+
+    $helper = new VF_SearchLevel();
+
+    $displayLevels = $search->getLevels();
+    $c = count( $displayLevels );
+
+    for( $i = 0; $i < $c; $i++ )
+    {
+        $level = $displayLevels[ $i ];
+        $prevLevel = ( $i > 0 ) ? $displayLevels[ $i - 1 ] : false;
+        echo $helper->display( $search, $level, $prevLevel );
+    }
+
+    if( $search->showSearchButton() )
+    {
+        ?>
+        <div align="center">
+            <?php
+            // clear button
+            if( $search->showClearButton()  )
+            {
+                if( 'link' == $search->clearButton() )
+                {
+                    ?><a href="#" id="vafClear"><?=$search->getClearText()?></a><?php
+                }
+                else
+                {
+                    ?><input type="button" id="vafClear" value="<?=$search->getClearText()?>" /><?php
+                }
+            }
+
+            echo ' ';
+
+            // search button
+            if( 'link' == $search->searchButton() )
+            {
+                ?><a href="#" class="vafSubmit"><?=$search->getSubmitText()?></a><?php
+            }
+            else
+            {
+                ?><input type="button" value="<?=$search->getSubmitText()?>" class="vafSubmit" /><?php
+            }
+            ?>
+
+        </div>
+        <?php
+    }
+    ?>
+</form>
+
+<!-- start VAF -->
+<script src="/modules/vaf/jquery.metadata.pack.js" type="text/javascript" language="javascript"></script>
+<script src="/modules/vaf/js.php?front=1" type="text/javascript" language="javascript"></script>
+<!-- end VAF -->
