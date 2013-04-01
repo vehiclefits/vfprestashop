@@ -2,14 +2,14 @@
 $search = new VF_Search;
 ?>
 
-<form action="?" method="<?=$search->getMethod()?>" id="<?=$search->formId()?>" name="<?=$search->formId()?>">
-    <input type="hidden" id="vafProduct" value="<?=$search->getProductId()?>" />
+<form action="?" method="<?= $search->getMethod() ?>" id="<?= $search->formId() ?>" name="<?= $search->formId() ?>">
+    <input type="hidden" id="vafProduct" value="<?= $search->getProductId() ?>"/>
     <?=$search->proxyValues();?>
-    <!-- start "category chooser" --> 
+    <!-- start "category chooser" -->
     <?php
-    echo '<input type="hidden" name="category" id="categorySelect" value="?" />'; 
+    echo '<input type="hidden" name="category" id="categorySelect" value="?" />';
     ?>
-    <!-- end "category chooser" --> 
+    <!-- end "category chooser" -->
 
     <?php
     $levels = $search->getLevels();
@@ -17,48 +17,39 @@ $search = new VF_Search;
     $helper = new VF_SearchLevel();
 
     $displayLevels = $search->getLevels();
-    $c = count( $displayLevels );
+    $c = count($displayLevels);
 
-    for( $i = 0; $i < $c; $i++ )
-    {
-        $level = $displayLevels[ $i ];
-        $prevLevel = ( $i > 0 ) ? $displayLevels[ $i - 1 ] : false;
-        echo $helper->display( $search, $level, $prevLevel );
+    for ($i = 0; $i < $c; $i++) {
+        $level = $displayLevels[$i];
+        $prevLevel = ($i > 0) ? $displayLevels[$i - 1] : false;
+        echo $helper->display($search, $level, $prevLevel);
     }
 
-    if( $search->showSearchButton() )
-    {
+    if ($search->showSearchButton()) {
         ?>
         <div align="center">
             <?php
             // clear button
-            if( $search->showClearButton()  )
-            {
-                if( 'link' == $search->clearButton() )
-                {
-                    ?><a href="#" id="vafClear"><?=$search->getClearText()?></a><?php
-                }
-                else
-                {
-                    ?><input type="button" id="vafClear" value="<?=$search->getClearText()?>" /><?php
+            if ($search->showClearButton()) {
+                if ('link' == $search->clearButton()) {
+                    ?><a href="#" id="vafClear"><?= $search->getClearText() ?></a><?php
+                } else {
+                    ?><input type="button" id="vafClear" value="<?= $search->getClearText() ?>" /><?php
                 }
             }
 
             echo ' ';
 
             // search button
-            if( 'link' == $search->searchButton() )
-            {
-                ?><a href="#" class="vafSubmit"><?=$search->getSubmitText()?></a><?php
-            }
-            else
-            {
-                ?><input type="button" value="<?=$search->getSubmitText()?>" class="vafSubmit" /><?php
+            if ('link' == $search->searchButton()) {
+                ?><a href="#" class="vafSubmit"><?= $search->getSubmitText() ?></a><?php
+            } else {
+                ?><input type="button" value="<?= $search->getSubmitText() ?>" class="vafSubmit" /><?php
             }
             ?>
 
         </div>
-        <?php
+    <?php
     }
     ?>
 </form>
