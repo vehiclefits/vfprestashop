@@ -1,5 +1,6 @@
 <?php
 $search = new VF_Search;
+$search->setRequest(VF_Singleton::getInstance()->getRequest());
 ?>
 
 <form action="?" method="<?= $search->getMethod() ?>" id="<?= $search->formId() ?>" name="<?= $search->formId() ?>">
