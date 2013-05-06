@@ -8,6 +8,7 @@ if (!defined('_PS_VERSION_')) {
 
 define( 'ELITE_CONFIG_DEFAULT', dirname(__FILE__).'/config.default.ini' );
 define( 'ELITE_CONFIG', dirname(__FILE__).'/config.ini' );
+define( 'ELITE_PATH', '.' );
 
 class Vaf extends Module
 {
