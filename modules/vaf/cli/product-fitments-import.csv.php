@@ -21,11 +21,8 @@
  * @copyright  Copyright (c) 2013 Vehicle Fits, llc
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
-error_reporting(E_ALL & ~E_NOTICE);
-define('_PS_VERSION_',true);
-define( 'ELITE_CONFIG_DEFAULT', dirname(__FILE__).'/../config.default.ini' );
-define( 'ELITE_CONFIG', dirname(__FILE__).'/../config.ini' );
-require_once('../autoload.php');
+
+require_once(__DIR__.'/../bootstrap.php');
 
 if(!isset($argv[1])) {
     echo 'Try product-fitments-import.php <filename>'."\n";
