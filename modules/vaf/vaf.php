@@ -1,6 +1,5 @@
 <?php
 require_once('autoload.php');
-require_once('HelperData.php');
 
 if (!defined('_PS_VERSION_')) {
     exit;
