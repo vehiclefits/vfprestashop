@@ -10,7 +10,7 @@
     ],
     "minimum-stability": "dev",
     "require": {
-	"zendframework/zendframework1":"*"
+	    "zendframework/zendframework1":"*"
     },
     "require-dev": {
         "phpunit/phpunit": "3.7.19",
