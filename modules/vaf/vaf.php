@@ -1,19 +1,16 @@
 <?php
-require_once('autoload.php');
+require_once('vendor/autoload.php');
 
 if (!defined('_PS_VERSION_')) {
     exit;
 }
 
-define( 'ELITE_CONFIG_DEFAULT', dirname(__FILE__).'/config.default.ini' );
-define( 'ELITE_CONFIG', dirname(__FILE__).'/config.ini' );
-define( 'ELITE_PATH', '.' );
+require_once 'bootstrap.php';
 
 class Vaf extends Module
 {
     function __construct()
     {
-        $this->name = 'vaf';
         $this->tab = 'Vehicle Fits';
         $this->version = 1.0;
         $this->author = 'Josh Ribakoff';
