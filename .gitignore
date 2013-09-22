@@ -1,3 +1,4 @@
 .DS_Store
+.idea
 modules/vaf/vendor
 /modules/vaf/composer.lock
