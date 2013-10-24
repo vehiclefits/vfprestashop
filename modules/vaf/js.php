@@ -7,4 +7,4 @@ define( 'ELITE_CONFIG', dirname(__FILE__).'/config.ini' );
 
 require_once 'bootstrap.php';
 
-require_once('vendor/vehiclefits/vehicle-fits-core/library/VF/html/vafAjax.js.include.php');
+require_once('vendor/vehiclefits/library/library/VF/html/vafAjax.js.include.php');

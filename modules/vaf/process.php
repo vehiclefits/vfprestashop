@@ -5,4 +5,4 @@ define( 'ELITE_CONFIG_DEFAULT', dirname(__FILE__).'/config.default.ini' );
 define( 'ELITE_CONFIG', dirname(__FILE__).'/config.ini' );
 
 require_once 'bootstrap.php';
-require_once('vendor/vehiclefits/vehicle-fits-core/library/VF/html/vafAjax.include.php');
+require_once('vendor/vehiclefits/library/library/VF/html/vafAjax.include.php');
