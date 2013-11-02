@@ -36,14 +36,6 @@ class Vaf extends Module
         return $this->registerHook('leftColumn') && $this->registerHook('displayHome');
     }
 
-    function hookDisplayAdminProductsExtra($obj)
-    {
-        ob_start();
-        include('vafadmin.phtml');
-        $content = ob_get_clean();
-        return $content;
-    }
-
     public function hookDisplayHome($params)
     {
         return $this->hookLeftColumn($params);
