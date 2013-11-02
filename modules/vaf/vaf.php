@@ -33,7 +33,7 @@ class Vaf extends Module
 
     function registerHooks()
     {
-        return $this->registerHook('leftColumn');
+        return $this->registerHook('leftColumn') && $this->registerHook('displayHome');
     }
 
     function hookDisplayAdminProductsExtra($obj)
@@ -42,6 +42,11 @@ class Vaf extends Module
         include('vafadmin.phtml');
         $content = ob_get_clean();
         return $content;
+    }
+
+    public function hookDisplayHome($params)
+    {
+        return $this->hookLeftColumn($params);
     }
 
     function hookLeftColumn($params)
