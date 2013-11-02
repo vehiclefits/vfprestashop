@@ -9,7 +9,7 @@ class vafvfresultsModuleFrontController extends ModuleFrontController
 
         $db = VF_Singleton::getInstance()->getReadAdapter();
         $subQuery = 'select DISTINCT(id_category) FROM ps_category_product WHERE id_product IN ('.implode(',',$this->vafProductIds()).')';
-        $query = 'select * from ps_category_lang where id_category IN (' . $subQuery . ')';
+        $query = 'select * from ps_category_lang where id_category IN (' . $subQuery . ') group by id_category';
         $result = $db->query($query);
 
         $categories = array();
