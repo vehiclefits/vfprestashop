@@ -3,9 +3,14 @@ $search = new VF_Search;
 $search->setRequest(VF_Singleton::getInstance()->getRequest());
 ?>
 
-<form action="?" method="<?= $search->getMethod() ?>" id="<?= $search->formId() ?>" name="<?= $search->formId() ?>">
+<form action="/index.php" method="<?= $search->getMethod() ?>" id="<?= $search->formId() ?>" name="<?= $search->formId() ?>">
     <input type="hidden" id="vafProduct" value="<?= $search->getProductId() ?>"/>
-    <?=$search->proxyValues();?>
+
+    <!-- Prestashop stuff -->
+    <input type="hidden" name="fc" value="module" />
+    <input type="hidden" name="module" value="vaf" />
+    <input type="hidden" name="controller" value="vfresults" />
+
     <!-- start "category chooser" -->
     <?php
     echo '<input type="hidden" name="category" id="categorySelect" value="?" />';
@@ -45,7 +50,7 @@ $search->setRequest(VF_Singleton::getInstance()->getRequest());
             if ('link' == $search->searchButton()) {
                 ?><a href="#" class="vafSubmit"><?= $search->getSubmitText() ?></a><?php
             } else {
-                ?><input type="button" value="<?= $search->getSubmitText() ?>" class="vafSubmit" /><?php
+                ?><input type="submit" value="<?= $search->getSubmitText() ?>" /><?php
             }
             ?>
 

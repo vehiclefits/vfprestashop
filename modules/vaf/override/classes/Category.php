@@ -134,28 +134,27 @@ class Category extends CategoryCore
 
 		/* Modify SQL result */
 		return Product::getProductsProperties($id_lang, $result);
-        }
-        
-        function vafProductIds()
-        {
-            //return '1';
-            $this->flexibleSearch()->storeFitInSession();
-            $productIds = $this->flexibleSearch()->doGetProductIds();
-            return $productIds;
-        }
-        
-        /** @return VF_FlexibleSearch */
+    }
+
+    function vafProductIds()
+    {
+        //return '1';
+        $this->flexibleSearch()->storeFitInSession();
+        $productIds = $this->flexibleSearch()->doGetProductIds();
+        return $productIds;
+    }
+
+    /** @return VF_FlexibleSearch */
     function flexibleSearch()
     {
         $search = new VF_FlexibleSearch(new VF_Schema, new Zend_Controller_Request_Http);
-	$search->setConfig($this->vafConfig());
+        $search->setConfig($this->vafConfig());
         return $search;
     }
-    
+
     function vafConfig()
     {
         return new Zend_Config(array());
     }
- 
 
 }

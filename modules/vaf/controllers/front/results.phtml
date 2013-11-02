@@ -1,0 +1,13 @@
+<?php
+foreach($categories as $category) {
+    if($category['name'] == 'Home') {
+        continue;
+    }
+
+    $url = sprintf('/index.php?id_category=%d&controller=category', $category['id']);
+    ?>
+    <a href="<?=$url?>"><?=htmlentities($category['name'])?></a>
+    <p><?=htmlentities($category['description'])?></p>
+    <hr />
+    <?php
+}
