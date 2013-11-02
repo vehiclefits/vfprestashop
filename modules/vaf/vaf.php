@@ -34,6 +34,11 @@ class Vaf extends Module
         return true;
     }
 
+    function uninstall()
+    {
+        return parent::uninstall() && Configuration::deleteByName('MYMODULE_NAME');
+    }
+
     function registerHooks()
     {
         return $this->registerHook('leftColumn') && $this->registerHook('displayHome') && $this->registerHook('displayHeader');
