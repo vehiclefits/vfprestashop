@@ -11,12 +11,11 @@ class Vaf extends Module
 {
     function __construct()
     {
-        $this->tab = 'Vehicle Fits';
+        $this->name = 'vaf';
+        $this->tab = 'vaf';
         $this->version = 1.0;
         $this->author = 'Josh Ribakoff';
         $this->need_instance = 0;
-
-        session_start();
 
         parent::__construct();
 
@@ -34,10 +33,7 @@ class Vaf extends Module
 
     function registerHooks()
     {
-        return $this->registerHook('leftColumn') &&
-            $this->registerHook('displayAdminProductsExtra') &&
-            $this->registerHook('actionProductSave') &&
-            $this->registerHook('productListAssign');
+        return $this->registerHook('leftColumn');
     }
 
     function hookDisplayAdminProductsExtra($obj)
@@ -65,21 +61,6 @@ class Vaf extends Module
         return $this->hookLeftColumn($params);
     }
 
-    function hookActionProductSave()
-    {
-        $this->removeFitments();
-        $this->addNewFitments();
-    }
-
-    function hookProductListAssign($params)
-    {
-        if ($params['nbProducts']) {
-            return;
-        }
-        echo 'There is a conflicting module with Vehicle Fit, please contact support for instructions on fixing.';
-        // exit();
-    }
-
     function vafProductIds()
     {
         //return '1';
@@ -99,46 +80,6 @@ class Vaf extends Module
     function vafConfig()
     {
         return new Zend_Config(array());
-    }
-
-    function removeFitments()
-    {
-        $request = new Zend_Controller_Request_Http;
-        $schema = new VF_Schema();
-        if (is_array($request->getParam('vaf-delete')) && count($request->getParam('vaf-delete')) >= 1) {
-            foreach ($request->getParam('vaf-delete', array()) as $fit) {
-                $fit = explode('-', $fit);
-                $level = $fit[0];
-                $fit = $fit[1];
-                if ($level == $schema->getLeafLevel()) {
-                    Elite_Vaf_Helper_Data::getInstance()->deleteFitment($_GET['id_product'], $fit);
-                }
-            }
-        }
-    }
-
-
-    function addNewFitments()
-    {
-        $request = new Zend_Controller_Request_Http;
-        if (is_array($request->getParam('vaf')) && count($request->getParam('vaf')) >= 1) {
-            foreach ($request->getParam('vaf') as $fit) {
-                if (strpos($fit, ':') && strpos($fit, ';')) {
-                    // new logic
-                    $params = explode(';', $fit);
-                    $newParams = array();
-                    foreach ($params as $key => $value) {
-                        $data = explode(':', $value);
-                        if (count($data) <= 1) {
-                            continue;
-                        }
-
-                        $newParams[$data[0]] = $data[1];
-                    }
-                    Elite_Vaf_Helper_Data::getInstance()->addFitment($_GET['id_product'], $newParams);
-                }
-            }
-        }
     }
 
 }
